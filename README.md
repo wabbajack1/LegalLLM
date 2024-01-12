@@ -31,15 +31,28 @@ Objective of the EU: -> **[The regulation obligates financial market participant
 
 You can find the [overleaf document here](https://www.overleaf.com/7798534937fhhrqzhvpqqn#7d48ca)
 
+## Ideas
+
+### What is RAG?
+- [Cookbook RAG](https://python.langchain.com/docs/expression_language/cookbook/retrieval)
+- [Data connection](https://python.langchain.com/docs/modules/data_connection/)
+
+### Which model to use?
+- [Open source LLMs](https://github.com/jmorganca/ollama)
+
+
+
+
 ## Open To-Dos
-- [ ] Everybody understands what needs to be done
-- [ ] Crawler that fetches HTML files from the web
-- [ ] Import files into vector-store
-- [ ] Build lang chain
-- [ ] Improve results with Few-Short-Learning
+- [x] (S, J, K) Everybody understands what needs to be done
+- [ ] (S) Crawler that fetches HTML files from the web (fetch all links within, go one level deeper) 
+- [ ] (J) Import files into vector-store -> https://python.langchain.com/docs/modules/data_connection/document_loaders/html
+- [ ] (K) Build lang chain -> logic how langchain would be used with the LLM (retriever), open source LLM API-key (optional or local), run LLM locally
+- [ ] ...
+- [ ] Improve results with Few-Shot-Learning (How to design the prompts)
 - [ ] Serve lang chain via an API
 - [ ] Frontend is build which allows querying
-  - [ ] Frontend should also point to the part of the documents that hold the answers 
+  - [ ] Frontend should also point to the part of the documents that hold the answers
 
 ## Corpus
 ...
