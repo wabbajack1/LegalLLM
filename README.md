@@ -26,8 +26,8 @@ Objective of the EU: -> **[The regulation obligates financial market participant
 
 
 ## Project report
-- **Deadline: 31.01.2024**
-- **Length: 5 to 10 pages**
+- **Deadline: 31.01.2024 (Project report presentations (10min) and submission of written project report)**
+- **Length of Paper: 5 to 10 pages**
 
 You can find the [overleaf document here](https://www.overleaf.com/7798534937fhhrqzhvpqqn#7d48ca)
 
