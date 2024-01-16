@@ -1,1 +1,6 @@
 .idea
+cache
+chroma_db
+fixed-documents
+raw-documents
+__pycache__
