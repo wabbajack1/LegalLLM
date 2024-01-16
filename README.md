@@ -40,6 +40,9 @@ You can find the [overleaf document here](https://www.overleaf.com/7798534937fhh
 ### Which model to use?
 - [Open source LLMs](https://github.com/jmorganca/ollama)
 
+### In-Text Citing with Langchain
+- [In-Text Citing with Langchain Question Answering](https://medium.com/@yotamabraham/in-text-citing-with-langchain-question-answering-e19a24d81e39)
+
 
 
 
