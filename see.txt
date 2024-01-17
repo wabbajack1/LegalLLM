@@ -1,0 +1,1 @@
+Loading 37 documents into chroma store. Can take some time.

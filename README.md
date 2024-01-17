@@ -47,11 +47,12 @@ You can find the [overleaf document here](https://www.overleaf.com/7798534937fhh
 
 ## Open To-Dos
 - [x] (S, J, K) Everybody understands what needs to be done
+- [ ] (?) clean raw data from the crawler
 - [ ] (S) Crawler that fetches HTML files from the web (fetch all links within, go one level deeper) 
-- [ ] (J) Import files into vector-store -> https://python.langchain.com/docs/modules/data_connection/document_loaders/html
-- [ ] (K) Build lang chain -> logic how langchain would be used with the LLM (retriever), open source LLM API-key (optional or local), run LLM locally
+- [ ] (J) Import files into vector-store -> https://python.langchain.com/docs/modules/data_connection/document_loaders/html (again)
+- [ ] (K) Build lang chain -> logic how langchain would be used with the LLM (retriever), open source LLM API-key (optional or local), run LLM locally (refinen)
 - [ ] ...
-- [ ] Improve results with Few-Shot-Learning (How to design the prompts)
+- [ ] Improve results with Few-Shot-Learning (How to design the prompts) (task == prompt)
 - [ ] Serve lang chain via an API
 - [ ] Frontend is build which allows querying
   - [ ] Frontend should also point to the part of the documents that hold the answers
