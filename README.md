@@ -60,3 +60,9 @@ You can find the [overleaf document here](https://www.overleaf.com/7798534937fhh
 ## Corpus
 ...
 
+
+## Objective of Legal LLM (EU - Taxomie (Case studies))
+The next information and case studies is based [on](https://bankenverband.de/files/2023-10/Taxonomie%20Leitfaden_Update%202023.pdf) the case, if a econmic activity
+is taxonomie conform.
+
+
