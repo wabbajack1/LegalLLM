@@ -42,8 +42,7 @@ You can find the [overleaf document here](https://www.overleaf.com/7798534937fhh
 
 ### In-Text Citing with Langchain
 - [In-Text Citing with Langchain Question Answering](https://medium.com/@yotamabraham/in-text-citing-with-langchain-question-answering-e19a24d81e39)
-
-
+- [Legal propmts](https://www.legalpromptguide.com/1.-introduction-to-legal-prompt-engineering-lpe)
 
 
 ## Open To-Dos

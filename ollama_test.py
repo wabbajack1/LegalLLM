@@ -1,8 +1,8 @@
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.llms import Ollama
 
-ollama_embeddings = OllamaEmbeddings(base_url='http://vps.janmd.de:11434', model="phi")
-ollama = Ollama(base_url='http://vps.janmd.de:11434', model="phi")
+ollama_embeddings = OllamaEmbeddings(base_url='localhost:11434', model="phi")
+ollama = Ollama(base_url='localhost:11434', model="phi")
 
 
 def get_embeddings(text):
