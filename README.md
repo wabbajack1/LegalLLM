@@ -52,6 +52,7 @@ You can find the [overleaf document here](https://www.overleaf.com/7798534937fhh
 - [ ] (J) Import files into vector-store -> https://python.langchain.com/docs/modules/data_connection/document_loaders/html (again)
 - [ ] (K) Build lang chain -> logic how langchain would be used with the LLM (retriever), open source LLM API-key (optional or local), run LLM locally (refinen)
 - [ ] ...
+- [ ] Build Validation pipeline (usage of ["3.FAQs repo"](https://ec.europa.eu/sustainable-finance-taxonomy/) for QA pairs)
 - [ ] Improve results with Few-Shot-Learning (How to design the prompts) (task == prompt)
 - [ ] Serve lang chain via an API
 - [ ] Frontend is build which allows querying
@@ -77,8 +78,6 @@ Here is the documentation of how the logic of the chain is composed:
 
 
 # Validation
-GPT-4 is instructed to grade the accuracy of a predicted answer choice by comparing it to the real answer choice for a given question or just by using another vector database. Hence we have to create 
-a dataset, where the question paired with the answers exists.
-
-- Q/A Pairs for the LLM to evaluate and building few-shot prompts (needs to be carefully analysed by human): see under ["3.FAQs repo"](https://ec.europa.eu/sustainable-finance-taxonomy/)
+- Method for evaluating the LLM: GPT-4 is instructed to grade the accuracy of a predicted answer choice by comparing it to the real answer choice for a given question (Paper [arge Language Models as Tax Attorneys: A Case Study in Legal Capabilities Emergence](https://arxiv.org/pdf/2306.07075.pdf)) or just by using another vector database.
+- Data for few-shot prompt examples and evaluation: Q/A Pairs for the LLM to evaluate and building few-shot prompts (needs to be carefully analysed by human): see under ["3.FAQs repo"](https://ec.europa.eu/sustainable-finance-taxonomy/).
 
