@@ -52,8 +52,8 @@ You can find the [overleaf document here](https://www.overleaf.com/7798534937fhh
 - [x] (J) Import files into vector-store -> https://python.langchain.com/docs/modules/data_connection/document_loaders/html (again)
 - [x] (K) Build lang chain -> logic how langchain would be used with the LLM (retriever), open source LLM API-key (optional or local), run LLM locally (refinen)
 - [ ] (K) Build Validation pipeline (usage of ["3.FAQs repo"](https://ec.europa.eu/sustainable-finance-taxonomy/) for QA pairs)
-- [ ] (S) Create validation dataset, where Q:A are the key:value pairs. Where the value is composed only of the Articels.
-- [ ] (K) Improve results with Few-Shot-Learning (How to design the prompts) (task == prompt)
+  - [ ] (S) Create validation dataset, where Q:A are the key:value pairs. Where the value is composed only of the Articels.
+  - [ ] (K) Improve results with Few-Shot-Learning (How to design the prompts) (task == prompt)
 - [ ] Serve lang chain via an API
 - [ ] Frontend is build which allows querying
   - [ ] Frontend should also point to the part of the documents that hold the answers
