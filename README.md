@@ -65,4 +65,20 @@ You can find the [overleaf document here](https://www.overleaf.com/7798534937fhh
 The next information and case studies is based [on](https://bankenverband.de/files/2023-10/Taxonomie%20Leitfaden_Update%202023.pdf) the case, if a econmic activity
 is taxonomie conform.
 
+# Chains
+Here is the documentation of how the logic of the chain is composed:
+
+## Prompts
+- The idea is to use [few-shot prompts](https://python.langchain.com/docs/modules/model_io/prompts/few_shot_examples)
+- Objective here is to create examples few-shots for the model
+
+## Wrapper
+- (LLMSummarizationChecker)[https://api.python.langchain.com/en/latest/chains/langchain.chains.llm_summarization_checker.base.LLMSummarizationCheckerChain.html#]
+
+
+# Validation
+GPT-4 is instructed to grade the accuracy of a predicted answer choice by comparing it to the real answer choice for a given question or just by using another vector database. Hence we have to create 
+a dataset, where the question paired with the answers exists.
+
+- Q/A Pairs for the LLM to evaluate and building few-shot prompts (needs to be carefully analysed by human): see under ["3.FAQs repo"](https://ec.europa.eu/sustainable-finance-taxonomy/)
 

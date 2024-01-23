@@ -2,6 +2,7 @@ from document_store import get_chroma
 from langchain_community.embeddings import OllamaEmbeddings
 from langchain_community.llms import Ollama
 from langchain_core.output_parsers import StrOutputParser
+from langchain_core.prompts import PromptTemplate
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnableLambda, RunnablePassthrough
 from template_prompt import Legal_Template
@@ -10,8 +11,8 @@ import langchain
 
 
 
-# langchain.verbose = True
-langchain.debug = True
+langchain.verbose = True
+# langchain.debug = True
 
 def get_model(base_url:str, model_name:str="mistral"):
     ollama_embeddings = OllamaEmbeddings(base_url=base_url, model=model_name)
@@ -26,18 +27,22 @@ if __name__ == "__main__":
     tasks_retriever = Legal_Template()
     task_template = tasks_retriever.task1_template()
 
-    template = """Answer the question based only on the following context:
+    template = """
+        Answer the question based only on the following context:
         {context}
 
         Question: {question}
 
-        If you know the answer, give it in bullet points. If you do not know the answer, respond by saying "I do not know."
+        If you know the answer, give it in bullet points or just in one sentence. 
+        If you dont know the answer based on the context, respond with "I dont know."
+        Don't make up an answer.
         """
     
     # init task
-    prompt = ChatPromptTemplate.from_template(template)
+    prompt = PromptTemplate.from_template(template)
+
     chain = (
-        {"context": get_chroma().as_retriever(), "question": RunnablePassthrough()}
+        {"context": get_chroma().as_retriever(search_type="mmr"), "question": RunnablePassthrough()}
         | prompt
         | model
         | StrOutputParser()
@@ -49,4 +54,4 @@ if __name__ == "__main__":
     should be consistent with the long-term temperature goal of the Paris Agreement. That environmental objective should be interpreted in accordance 
     with relevant Union law, including Directive 2009/31/EC of the European Parliament and of the Council.
     """
-    print(chain.invoke("How should an economic activity pursue its objective?"))
+    print(chain.invoke("I have a battery factory, what do I have to pay special attention to?"))
