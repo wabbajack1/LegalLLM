@@ -1,6 +1,13 @@
 import os
+import re
 
 from langchain.text_splitter import HTMLHeaderTextSplitter, RecursiveCharacterTextSplitter
+
+
+def remove_non_alphanumeric_spaces(input_string):
+    # Use regular expression to replace non-alphanumeric spaces
+    result = re.sub(r'\s+(?![\w()\"\'])', '', input_string)
+    return result
 
 
 def get_documents_splitted(target_dir: str):
@@ -34,6 +41,10 @@ def get_documents_splitted(target_dir: str):
 
         # Split again with a maximum chunk size
         chunked_splits = chunk_splitter.split_documents(html_header_splits_with_metadata)
+
+        for split in chunked_splits:
+            split.page_content = split.page_content.replace("\n", "")
+            split.page_content = remove_non_alphanumeric_spaces(split.page_content)
 
         target_documents += chunked_splits
 

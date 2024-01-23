@@ -1,6 +1,15 @@
 import os
+import re
 
 from bs4 import BeautifulSoup
+
+
+def remove_non_alphanumeric_spaces(input_string):
+    input_string = input_string.replace('\u00A0', ' ')
+
+    # Use regular expression to replace non-alphanumeric spaces
+    result = re.sub(r'\s+(?![\w()\"\'])', '', input_string)
+    return result
 
 
 def cleanup_documents(target_dir: str, output_dir: str):
@@ -35,6 +44,12 @@ def cleanup_documents(target_dir: str, output_dir: str):
                 html_output = eli_container.prettify()
                 html_output = html_output.replace("\r\n", "")
                 html_output = html_output.replace("\n", "")
+                html_output = html_output.replace('‘', ' "')
+                html_output = html_output.replace('’', ' "')
+                html_output = html_output.replace('“', '\'')
+                html_output = html_output.replace('”', '\'')
+
+                html_output = remove_non_alphanumeric_spaces(html_output)
 
                 file.write(html_output)
         else:
