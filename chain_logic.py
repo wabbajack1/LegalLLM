@@ -33,7 +33,7 @@ if __name__ == "__main__":
 
         Question: {question}
 
-        If you know the answer, give it in bullet points or just in one sentence. 
+        If you know the answer, give only the Articles numbers as an answer.
         If you dont know the answer based on the context, respond with "I dont know."
         Don't make up an answer.
         """
@@ -54,4 +54,4 @@ if __name__ == "__main__":
     should be consistent with the long-term temperature goal of the Paris Agreement. That environmental objective should be interpreted in accordance 
     with relevant Union law, including Directive 2009/31/EC of the European Parliament and of the Council.
     """
-    print(chain.invoke("I have a battery factory, what do I have to pay special attention to?"))
+    print(chain.invoke("What assets are in scope of Taxonomy-eligibility reporting for financial undertakings?"))

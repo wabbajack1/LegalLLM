@@ -31,7 +31,7 @@ Objective of the EU: -> **[The regulation obligates financial market participant
 
 You can find the [overleaf document here](https://www.overleaf.com/7798534937fhhrqzhvpqqn#7d48ca)
 
-## Ideas
+## Ideas / Cookbooks
 
 ### What is RAG?
 - [Cookbook RAG](https://python.langchain.com/docs/expression_language/cookbook/retrieval)
@@ -48,30 +48,23 @@ You can find the [overleaf document here](https://www.overleaf.com/7798534937fhh
 ## Open To-Dos
 - [x] (S, J, K) Everybody understands what needs to be done
 - [ ] (?) clean raw data from the crawler
-- [ ] (S) Crawler that fetches HTML files from the web (fetch all links within, go one level deeper) 
-- [ ] (J) Import files into vector-store -> https://python.langchain.com/docs/modules/data_connection/document_loaders/html (again)
-- [ ] (K) Build lang chain -> logic how langchain would be used with the LLM (retriever), open source LLM API-key (optional or local), run LLM locally (refinen)
-- [ ] ...
-- [ ] Build Validation pipeline (usage of ["3.FAQs repo"](https://ec.europa.eu/sustainable-finance-taxonomy/) for QA pairs)
-- [ ] Improve results with Few-Shot-Learning (How to design the prompts) (task == prompt)
+- [x] (S) Crawler that fetches HTML files from the web (fetch all links within, go one level deeper) 
+- [x] (J) Import files into vector-store -> https://python.langchain.com/docs/modules/data_connection/document_loaders/html (again)
+- [x] (K) Build lang chain -> logic how langchain would be used with the LLM (retriever), open source LLM API-key (optional or local), run LLM locally (refinen)
+- [ ] (K) Build Validation pipeline (usage of ["3.FAQs repo"](https://ec.europa.eu/sustainable-finance-taxonomy/) for QA pairs)
+- [ ] (S) Create validation dataset, where Q:A are the key:value pairs. Where the value is composed only of the Articels.
+- [ ] (K) Improve results with Few-Shot-Learning (How to design the prompts) (task == prompt)
 - [ ] Serve lang chain via an API
 - [ ] Frontend is build which allows querying
   - [ ] Frontend should also point to the part of the documents that hold the answers
 
-## Corpus
-...
-
-
-## Objective of Legal LLM (EU - Taxomie (Case studies))
-The next information and case studies is based [on](https://bankenverband.de/files/2023-10/Taxonomie%20Leitfaden_Update%202023.pdf) the case, if a econmic activity
-is taxonomie conform.
-
 # Chains
-Here is the documentation of how the logic of the chain is composed:
+Here is the documentation of how the logic of the chain is build, i.e. composed.
 
 ## Prompts
 - The idea is to use [few-shot prompts](https://python.langchain.com/docs/modules/model_io/prompts/few_shot_examples)
 - Objective here is to create examples few-shots for the model
+- In few-shot: build few-shot where the template has a section for the articels, i.e. .... Article Summery: Article1, Article2, ....
 
 ## Wrapper
 - (LLMSummarizationChecker)[https://api.python.langchain.com/en/latest/chains/langchain.chains.llm_summarization_checker.base.LLMSummarizationCheckerChain.html#]
@@ -80,4 +73,10 @@ Here is the documentation of how the logic of the chain is composed:
 # Validation
 - Method for evaluating the LLM: GPT-4 is instructed to grade the accuracy of a predicted answer choice by comparing it to the real answer choice for a given question (Paper [arge Language Models as Tax Attorneys: A Case Study in Legal Capabilities Emergence](https://arxiv.org/pdf/2306.07075.pdf)) or just by using another vector database.
 - Data for few-shot prompt examples and evaluation: Q/A Pairs for the LLM to evaluate and building few-shot prompts (needs to be carefully analysed by human): see under ["3.FAQs repo"](https://ec.europa.eu/sustainable-finance-taxonomy/).
+- Process of evaluation: After legal LLM gave the answer, we need to extract the summary part of the answer, which indicates the articles. Which in gets further compared to the articels of the real answer from the dataset ["3.FAQs repo"](https://ec.europa.eu/sustainable-finance-taxonomy/).
+
+
+# Important Links
+- [Business activity cornform (case studies)?](https://bankenverband.de/files/2023-10/Taxonomie%20Leitfaden_Update%202023.pdf)
+- 
 
