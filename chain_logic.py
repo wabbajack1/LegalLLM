@@ -4,8 +4,10 @@ from langchain_community.llms import Ollama
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import ChatPromptTemplate
 from langchain_core.runnables import RunnablePassthrough
+from langchain_openai import OpenAI
 
-from document_store import get_chroma
+
+from document_store import get_document_store
 from template_prompt import Legal_Template
 
 langchain.verbose = True
@@ -13,13 +15,16 @@ langchain.debug = True
 
 
 def get_model(base_url: str, model_name: str = "phi"):
+    if model_name == "open-ai":
+        return OpenAI()
+
     ollama_embeddings = OllamaEmbeddings(base_url=base_url, model=model_name)
     ollama = Ollama(base_url=base_url, model=model_name)
     return ollama
 
 
 if __name__ == "__main__":
-    model = get_model("http://localhost:11434")
+    model = get_model("http://localhost:11434", model_name="open-ai")
 
     # choose task
     tasks_retriever = Legal_Template()
@@ -32,13 +37,16 @@ if __name__ == "__main__":
         Question: {question}
         """
 
+    retriever = get_document_store(model_name="open-ai").as_retriever()
+
     # init task
     prompt = ChatPromptTemplate.from_template(template)
     chain = (
-            {"context": get_chroma().as_retriever(), "question": RunnablePassthrough()}
+            {"context": retriever, "question": RunnablePassthrough()}
             | prompt
             | model
             | StrOutputParser()
     )
 
-    print(chain.invoke("What is Green house gas emission?"))
+    # print(chain.invoke("How can companies contribute substantially to climate change mitigation?"))
+    print(chain.invoke("What are environmental objectives provided by the EU taxonomy?"))

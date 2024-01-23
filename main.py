@@ -1,7 +1,7 @@
-from document_store import get_chroma
+from document_store import get_document_store
 
 if __name__ == '__main__':
-    chroma = get_chroma()
+    chroma = get_document_store()
 
     query = "What is greenhouse gas?"
 
