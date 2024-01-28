@@ -1,12 +1,14 @@
 """
-This module contains templates specific for the usage of LLM advisory tasks. For this tasks it is nessacary to define which tasks the LLM has to do, since the prompt
-is taks dependent, given the context from the retriever. Hence templates define specific tasks, which the LLM has to do. Therefore earch class represents a tasks.
+This module contains templates specific for the usage of LLM advisory tasks. For these tasks it is necessary to
+define which tasks the LLM has to do, since the prompt is task dependent, given the context from the retriever. Hence,
+templates define specific tasks, which the LLM has to do. Therefore, each class represents a tasks.
 
 In the case of Legal advisory tasks, templates can be created wrt the following tasks in Legal advisory tasks:
 
 - Preparing for Depositions (https://www.legalpromptguide.com/2.-practical-prompt-engineering-strategies-and-techniques/2.2.-few-example-prompting#example-preparing-for-depositions)
 - ...
 """
+
 
 class Legal_Template:
     def __init__(self):

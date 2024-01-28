@@ -2,12 +2,17 @@ import os
 import logging
 
 import langchain
+import uvicorn
 from dotenv import load_dotenv
+from fastapi import FastAPI
 from langchain_community.llms import Ollama
 from langchain_core.output_parsers import StrOutputParser
 from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_openai import OpenAI
+from langserve import add_routes
+from fastapi.middleware.cors import CORSMiddleware
+
 
 from crawler import crawl_and_store
 from document_store import get_faiss
@@ -93,10 +98,34 @@ if __name__ == "__main__":
             | StrOutputParser()
     )
 
+    app = FastAPI(
+        title="LegalLLM API",
+        version="1.0",
+        description="API for LegalLLM.",
+    )
+
+    # Set all CORS enabled origins
+    app.add_middleware(
+        CORSMiddleware,
+        allow_origins=["*"],
+        allow_credentials=True,
+        allow_methods=["*"],
+        allow_headers=["*"],
+        expose_headers=["*"],
+    )
+
+    add_routes(
+        app,
+        chain,
+        path="/legal",
+    )
+
+    uvicorn.run(app, host="localhost", port=8000)
+
     """
     An economic activity that pursues the environmental objective of climate change mitigation should contribute substantially to 
     the stabilisation of greenhouse gas emissions by avoiding or reducing them or by enhancing greenhouse gas removals. The economic activity 
     should be consistent with the long-term temperature goal of the Paris Agreement. That environmental objective should be interpreted in accordance 
     with relevant Union law, including Directive 2009/31/EC of the European Parliament and of the Council.
     """
-    print(chain.invoke("What assets are in scope of Taxonomy-eligibility reporting for financial undertakings?"))
+    # print(chain.invoke("What assets are in scope of Taxonomy-eligibility reporting for financial undertakings?"))
