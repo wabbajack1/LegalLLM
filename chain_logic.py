@@ -9,6 +9,7 @@ from langchain_core.prompts import PromptTemplate
 from langchain_core.runnables import RunnablePassthrough
 from langchain_openai import OpenAI
 
+from crawler import crawl_and_store
 from document_store import get_faiss
 from template_prompt import Legal_Template
 
@@ -45,9 +46,27 @@ if __name__ == "__main__":
         logging.error("Please copy the .env.example file to .env and configure it.")
         exit(1)
 
+    # Check if the document path exists. Otherwise, create it.
+    # Also check if the fixed document path exists. Otherwise, create it.
+    # Also check if any documents are in the document path
+    if not os.path.exists(os.getenv("DOCUMENT_PATH")) or not os.listdir(os.getenv("DOCUMENT_PATH")):
+        if not os.path.exists(os.getenv("DOCUMENT_PATH")):
+            logging.warning(f"Document path {os.getenv('DOCUMENT_PATH')} does not exist. Creating it.")
+            os.makedirs(os.getenv("DOCUMENT_PATH"))
+
+        logging.warning(f"Document path {os.getenv('DOCUMENT_PATH')} is empty. Crawling documents.")
+        crawl_and_store(
+            start_legislation=os.getenv("START_LEGISLATION", "CELEX:32020R0852"),
+            metadata=os.getenv("METADATA", "crawled_data.json"),
+            html_dir=os.getenv("DOCUMENT_PATH"),
+            max_depth=int(os.getenv("MAX_DEPTH", "2"))
+        )
+
+        logging.info(f"Finished crawling documents. Crawled {len(os.listdir(os.getenv('DOCUMENT_PATH')))} documents.")
+
     # get the LLM
     model = get_model(os.getenv("MODEL_URL"), os.getenv("MODEL"))
-    logging.info(f"Starting LegalLLM using {os.getenv('MODEL_NAME')} as LLM.")
+    logging.info(f"Starting LegalLLM using {os.getenv('MODEL')} as LLM.")
 
     # choose task
     tasks_retriever = Legal_Template()

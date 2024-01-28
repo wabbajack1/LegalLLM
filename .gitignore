@@ -5,3 +5,4 @@ fixed-documents
 __pycache__
 venv
 .env
+raw-documents
