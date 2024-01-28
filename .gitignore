@@ -3,3 +3,5 @@ cache
 chroma_db
 fixed-documents
 __pycache__
+venv
+.env
