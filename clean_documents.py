@@ -1,3 +1,4 @@
+import logging
 import os
 import re
 
@@ -53,4 +54,4 @@ def cleanup_documents(target_dir: str, output_dir: str):
 
                 file.write(html_output)
         else:
-            print('Element with class "eli-container" not found in the document.')
+            logging.info('Element with class "eli-container" not found in the document. Skipping document')
