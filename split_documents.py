@@ -33,6 +33,14 @@ def get_documents_splitted(target_dir: str):
     target_documents = []
 
     for raw_html_file in raw_html_files:
+        print(raw_html_file)
+
+        if "climate_delegated_act.txt" == raw_html_file:
+            with open("fixed-documents/disclosure_delegated_act.txt") as f:
+                state_of_the_union = f.read()
+                texts = chunk_splitter.create_documents([state_of_the_union])
+                target_documents += texts[:50]
+
         # Split first at every html heading
         html_header_splits = html_splitter.split_text_from_file(f"{target_dir}/{raw_html_file}")
         # The HTML splitter creates also for every single headline a document.
